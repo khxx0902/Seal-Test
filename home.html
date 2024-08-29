@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekomendasi Berita</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .navbar-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+        }
+        /* Ensure navbar items are evenly spaced */
+        .navbar-items {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .navbar-item {
+            margin: 0 8px;
+        }
+        .logo-title {
+            display: flex;
+            align-items: center;
+        }
+        .logo-title img {
+            height: 32px; /* Adjust logo size */
+        }
+        @media (max-width: 768px) {
+            .navbar-items {
+                flex-direction: column;
+                align-items: start;
+            }
+        }
+    </style>
+</head>
+<body class="p-6 bg-gray-100">
+    <!-- Navbar -->
+    <nav class="shadow-md bg-gradient-to-r from-blue-300 to-white navbar-fixed">
+        <div class="flex items-center justify-between p-4 mx-auto max-w-7xl">
+            <!-- Logo and Title -->
+            <div class="logo-title">
+                <img src="https://cdn.pixabay.com/photo/2016/12/27/13/10/logo-1933884_640.png" alt="Logo">
+                <span class="ml-2 text-xl font-bold text-gray-800">Berita Terkini</span>
+            </div>
+            <!-- Navigation Links -->
+            <div class="navbar-items">
+                <a href="#" class="text-gray-800 hover:text-blue-600">Beranda</a>
+                <a href="#" class="text-gray-800 hover:text-blue-600 navbar-item">Kesehatan</a>
+                <a href="#" class="text-gray-800 hover:text-blue-600 navbar-item">Otomotif</a>
+                <a href="#" class="text-gray-800 hover:text-blue-600 navbar-item">Politik</a>
+                <a href="#" class="text-gray-800 hover:text-blue-600 navbar-item">Olahraga</a>
+                <a href="#" class="text-gray-800 hover:text-blue-600 navbar-item">Nasional</a>
+                <a href="#" class="text-gray-800 hover:text-blue-600 navbar-item">Internasional</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container pt-16 mx-auto">
+        <!-- Headline Section -->
+<div class="flex items-start mb-8">
+    <!-- Card Content -->
+    <div class="flex-1 p-4">
+        <h2 class="mb-4 text-2xl font-bold text-gray-800">Headline</h2>
+        <div class="overflow-hidden bg-white rounded-lg shadow-md">
+            <div class="p-4">
+                <h3 id="headline-title" class="text-xl font-bold text-gray-800"></h3>
+                <p id="headline-date" class="mt-2 text-gray-600"></p>
+                <p id="headline-description" class="mt-4 text-gray-700"></p>
+                <a id="headline-link" href="#" class="block mt-4 text-blue-600">Read more</a>
+            </div>
+        </div>
+    </div>
+    <!-- Image -->
+    <div class="flex items-center w-1/3 pl-4">
+        <img id="headline-image" src="" alt="Headline Image" class="object-cover w-full h-full rounded-lg shadow-md">
+    </div>
+</div>
+
+        <!-- Berita Terpopuler Section -->
+        <div class="mb-8">
+            <h2 class="mb-4 text-2xl font-bold text-gray-800">Berita Terpopuler</h2>
+            <div id="popular-news" class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+                <!-- Berita terpopuler akan dimasukkan di sini melalui JavaScript -->
+            </div>
+        </div>
+
+        <!-- Rekomendasi Untuk Anda Section -->
+        <div class="mb-8">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-2xl font-bold text-gray-800">Rekomendasi Untuk Anda</h2>
+                <div class="relative">
+                    <input
+                        type="text"
+                        id="search-input"
+                        placeholder="Cari berita..."
+                        class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    <button
+                        id="search-btn"
+                        class="absolute top-0 right-0 p-2 mt-1 mr-2 text-blue-600 rounded-lg hover:bg-blue-100"
+                    >
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="news-container" class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
+                <!-- Berita rekomendasi akan dimasukkan di sini melalui JavaScript -->
+            </div>
+            <div class="flex items-center justify-between mt-8">
+                <span class="text-sm text-gray-600" id="pagination-info">Showing 1 to 8 of 97 results</span>
+                <div class="flex space-x-1">
+                    <button id="prev" class="px-3 py-1 text-gray-700 bg-gray-300 rounded hover:bg-gray-400">Previous</button>
+                    <span id="current-page" class="px-3 py-1 text-white bg-blue-600 rounded">1</span>
+                    <button id="next" class="px-3 py-1 text-gray-700 bg-gray-300 rounded hover:bg-gray-400">Next</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carousel for Ads -->
+        <div id="carousel-container" class="relative mt-8">
+            <div id="carousel-inner" class="flex">
+                <!-- Slide 1 -->
+                <img src="https://static1.squarespace.com/static/5a5dbe4632601eb31977f947/5a5dbe9653450ab899649d1f/62fb321d8e7ca70722113aa3/1660630864601/Diskon-Merdeka_Landscape.jpg?format=1500w" alt="Ad 1">
+                <!-- Slide 2 -->
+                <img src="https://jogjakita.co.id/wp-content/uploads/2023/06/1080x1920-landscape-1.png" alt="Ad 2">
+                <!-- Slide 3 -->
+                <img src="https://asset-2.tstatic.net/wartakota/foto/bank/images/Promo-Cashback-QRIS-SeaBank.jpg" alt="Ad 3">
+                <!-- Add more slides as needed -->
+            </div>
+            <div class="carousel-controls">
+                <button id="prev-slide" class="carousel-button">❮</button>
+                <button id="next-slide" class="carousel-button">❯</button>
+            </div>
+            <div id="carousel-indicators" class="carousel-indicators">
+                <!-- Indicator dots will be generated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+<footer class="fixed bottom-0 left-0 right-0 py-6 text-white bg-gray-800">
+    <div class="flex flex-col items-start justify-between w-full max-w-full px-6 md:flex-row">
+        <!-- Logo and Copy -->
+        <div class="flex flex-col items-start mb-4 md:mb-0">
+            <img src="https://cdn.pixabay.com/photo/2016/12/27/13/10/logo-1933884_640.png" alt="Logo" class="h-8 mb-2">
+            <div>
+                <p class="text-lg font-semibold">Berita Terkini</p>
+                <p class="text-sm">© 2023 Berita Kini. All Rights Reserved.</p>
+            </div>
+            
+            <!-- Ikuti Kami Section -->
+            <div class="mt-4">
+                <p class="mb-2 text-sm">Ikuti Kami</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-white hover:text-gray-400"><i class="fab fa-youtube fa-lg"></i></a>
+                    <a href="#" class="text-white hover:text-gray-400"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="#" class="text-white hover:text-gray-400"><i class="fab fa-facebook fa-lg"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Links -->
+<div class="flex flex-col mb-4 space-y-2 text-left md:mb-0"> <!-- Menggunakan space-y-3 untuk jarak antar elemen -->
+    <p class="mb-3 font-bold text-white">Telusuri</p> <!-- Mengubah mb-2 menjadi mb-4 untuk jarak lebih besar -->
+    <a href="#" class="text-sm text-white hover:text-gray-400">Beranda</a>
+    <a href="#" class="text-sm text-white hover:text-gray-400">Kesehatan</a>
+    <a href="#" class="text-sm text-white hover:text-gray-400">Otomotif</a>
+    <a href="#" class="text-sm text-white hover:text-gray-400">Politik</a>
+    <a href="#" class="text-sm text-white hover:text-gray-400">Olahraga</a>
+    <a href="#" class="text-sm text-white hover:text-gray-400">Nasional</a>
+    <a href="#" class="text-sm text-white hover:text-gray-400">Internasional</a>
+</div>
+
+<div class="flex flex-col mb-4 space-y-2 text-left md:mb-0"> <!-- Menggunakan space-y-3 untuk jarak antar elemen -->
+    <p class="mb-3 font-bold text-white">Bantuan</p> <!-- Mengubah mb-2 menjadi mb-4 untuk jarak lebih besar -->
+    <a href="#" class="text-sm text-white hover:text-gray-400">Kontak Kami</a>
+    <a href="#" class="text-sm text-white hover:text-gray-400">Laporan Pembajakan</a>
+    <a href="#" class="text-sm text-white hover:text-gray-400">Kebijakan</a>
+</div>
+
+        <!-- Subscription Form -->
+        <div class="flex flex-col items-center mb-4 md:items-end md:mb-0">
+            <p class="mb-2 text-sm">Berlangganan Berita Terbaru</p>
+            <form class="flex">
+                <input type="email" placeholder="Masukan email" class="px-4 py-2 text-gray-800 rounded-l-lg">
+                <button type="submit" class="px-4 py-2 text-white bg-blue-600 rounded-r-lg hover:bg-blue-700">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
